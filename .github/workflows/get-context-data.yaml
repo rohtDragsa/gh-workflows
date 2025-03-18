@@ -1,0 +1,40 @@
+name: vars
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  job_context:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Info about workflow run
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github)}}
+        run: |
+          echo env.GITHUB_CONTEXT
+      - name: Info about currently run job
+        env:
+          JOB_CONTEXT: ${{toJson(job)}}
+        run: |
+          echo env.JOB_CONTEXT
+      - name: Info about steps run in the current job
+        env: 
+          STEPS_CONTEXT: ${{ toJson(steps)}}
+        run: |
+          echo env.STEPS_CONTEXT
+      - name: Info about strategy
+        env: 
+          STRATEGY_CONTEXT: ${{ toJson(strategy)}}
+        run: |
+          echo env.STRATEGY_CONTEXT
+      - name: Info about matrix
+        env: 
+          MATRIX_CONTEXT: ${{ toJson(matrix)}}
+        run: |
+          echo env.MATRIX_CONTEXT
+      
+      
+     
+  
+    
+  
